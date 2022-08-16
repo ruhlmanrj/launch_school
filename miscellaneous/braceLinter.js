@@ -28,9 +28,17 @@ function lintBraces(string) {
   const stack = new Stack();
   const openBraces = /[\(\[\{]/;
   const isNotBrace = (char) => /[^\[\]\(\)\{\}]/.test(char);
-  const stackIsEmpty = () => !stack.read();
   const isOpenBrace = (char) => openBraces.test(char);
-  const braceMistmatch = (char) => compliments[char] !== stack.pop();
+  const braceMistmatch = (openBrace, closeBrace) => {
+   return compliments[closeBrace] !== openBrace;
+  }
+  const remainingBraces = () => {
+    const braces = [];
+    while (stack.read()) {
+      braces.push(stack.pop());
+    }
+    return braces.join(', ');
+  }
 
   for (const char of string) {
     if (isNotBrace(char)) {
@@ -42,17 +50,18 @@ function lintBraces(string) {
       continue;
     }
 
-    if (stackIsEmpty()) {
-      throw new SyntaxError('Unmatched closing brace');
+    const openBrace = stack.pop();
+    if (!openBrace) {
+      throw new SyntaxError(`No opening braces for '${char}'`);
     }
-
-    if (braceMistmatch(char)) {
-      throw new SyntaxError('Unmatched closing brace');
+    
+    if (braceMistmatch(openBrace, char)) {
+      throw new SyntaxError(`'${openBrace}' mismatch with '${char}'`);
     }
   }
 
-  if (!stackIsEmpty()) {
-    throw new SyntaxError('Unmatched opening brace(s)');
+  if (stack.read()) {
+    throw new SyntaxError(`Unmatched opening brace(s): ${remainingBraces()}`);
   }
 }
 
