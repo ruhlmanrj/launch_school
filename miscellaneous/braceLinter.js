@@ -4,62 +4,54 @@
  */
 
  class Stack {
-  #stack = [];
+  #data = [];
 
-  top() {
-    return this.#stack[this.#stack.length - 1];
+  read() {
+    return this.#data[this.#data.length - 1];
   }
 
   push(value) {
-    this.#stack.push(value);
+    this.#data.push(value);
   }
 
   pop() {
-    if (this.isEmpty()) {
-      throw new Error('UnderflowError: Cannot pop value from empty stack.');
-    }
-    return this.#stack.pop();
-  }
-
-  isEmpty() {
-    return this.#stack.length === 0;
+    return this.#data.pop();
   }
 }
 
 function lintBraces(string) {
-  const stack = new Stack();
-  const openBraces = /[\(\[\{]/;
-  const isNotBrace = (char) => /[^\[\]\(\)\{\}]/.test(char);
   const compliments = {
     ')': '(',
     ']': '[',
     '}': '{'
   };
+  const stack = new Stack();
+  const openBraces = /[\(\[\{]/;
+  const isNotBrace = (char) => /[^\[\]\(\)\{\}]/.test(char);
+  const stackIsEmpty = () => !stack.read();
+  const isOpenBrace = (char) => openBraces.test(char);
+  const braceMistmatch = (char) => compliments[char] !== stack.pop();
 
   for (const char of string) {
     if (isNotBrace(char)) {
       continue;
     }
 
-    if (openBraces.test(char)) {
+    if (isOpenBrace(char)) {
       stack.push(char);
       continue;
     }
 
-    if (stack.isEmpty()) {
+    if (stackIsEmpty()) {
       throw new SyntaxError('Unmatched closing brace');
     }
 
-    if (compliments[char] === stack.top()) {
-      stack.pop();
-    } else {
+    if (braceMistmatch(char)) {
       throw new SyntaxError('Unmatched closing brace');
     }
   }
 
-  if (stack.isEmpty()) {
-    console.log('Brace syntax is valid.');
-  } else {
+  if (!stackIsEmpty()) {
     throw new SyntaxError('Unmatched opening brace(s)');
   }
 }
