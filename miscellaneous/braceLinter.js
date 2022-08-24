@@ -52,7 +52,7 @@ function lintBraces(string) {
 
     const openBrace = stack.pop();
     if (!openBrace) {
-      throw new SyntaxError(`No opening braces for '${char}'`);
+      throw new SyntaxError(`No opening brace for '${char}'`);
     }
     
     if (braceMistmatch(openBrace, char)) {
@@ -63,6 +63,8 @@ function lintBraces(string) {
   if (stack.read()) {
     throw new SyntaxError(`Unmatched opening brace(s): ${remainingBraces()}`);
   }
+
+  return true;
 }
 
 // valid syntax
