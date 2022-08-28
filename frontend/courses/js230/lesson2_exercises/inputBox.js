@@ -1,4 +1,4 @@
-// Program that creates a custome input element
+// Program that creates a custom input element
 
 document.addEventListener('DOMContentLoaded', inputElementProgram);
 
@@ -57,4 +57,3 @@ function inputElementProgram() {
   document.addEventListener('click', documentClickCallbacks);
   document.addEventListener('keydown', displayKeystroke);
 }
-
