@@ -12,7 +12,7 @@ function inputElementProgram() {
     textField.classList.add('focused');
   };
 
-  const removeFocusedClass = () => {
+  const removeFocus = () => {
     textField.classList.remove('focused');
   };
 
@@ -50,7 +50,7 @@ function inputElementProgram() {
   };
 
   const documentClickCallbacks = () => {
-    [removeFocusedClass, removeCursor].forEach(callback => callback());
+    [removeFocus, removeCursor].forEach(callback => callback());
   };
 
   textField.addEventListener('click', textFieldClickCallbacks);
