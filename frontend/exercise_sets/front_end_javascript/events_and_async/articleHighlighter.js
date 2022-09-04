@@ -13,7 +13,6 @@ const articles = [...document.getElementsByTagName('article')];
 const mainElement = document.querySelector('main');
 
 navLinks.onclick = event => {
-  event.stopPropagation();
   clearHighlights();
 
   const articleId = event.target.getAttribute('href');
