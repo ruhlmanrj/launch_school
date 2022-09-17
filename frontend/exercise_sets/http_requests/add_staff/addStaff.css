@@ -1,0 +1,13 @@
+body {
+  font: 16px solid arial, helvetica, sans-serif;
+  padding: 30px;
+}
+
+label {
+  display: block;
+  padding: 5px;
+}
+
+input {
+  font-size: 16px;
+}
