@@ -1,0 +1,9 @@
+// debounce.js
+
+export default (func, delay) => {
+  let timeout;
+  return (...args) => {
+    if (timeout) { clearTimeout(timeout) }
+    timeout = setTimeout(() => func(...args), delay);
+  }
+}
