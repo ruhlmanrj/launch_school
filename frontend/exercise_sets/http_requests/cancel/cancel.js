@@ -5,7 +5,7 @@
 const scheduleForm = document.getElementById('delete-schedule');
 const bookingForm = document.getElementById('delete-booking');
 
-async function deleteResource(url) {
+async function removeResource(url) {
   const resourceType = url.split('/').at(-2).slice(0, -1);
   const requestMethod = (resourceType === 'schedule' ? 'DELETE' : 'PUT');
 
@@ -26,12 +26,12 @@ scheduleForm.onsubmit = event => {
   event.preventDefault();
   const id = scheduleForm['schedule_id'].value;
   const url = 'http://localhost:3000/api/schedules/' + id;
-  deleteResource(url);
+  removeResource(url);
 }
 
 bookingForm.onsubmit = event => {
   event.preventDefault();
   const id = bookingForm['booking_id'].value;
   const url = 'http://localhost:3000/api/bookings/' + id;
-  deleteResource(url);
+  removeResource(url);
 }
