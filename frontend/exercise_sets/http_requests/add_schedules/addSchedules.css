@@ -1,0 +1,33 @@
+body {
+  font: 20px solid arial, helvetica, sans-serif;
+  padding: 30px;
+}
+
+form {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 10px 0px;
+  padding: 15px 30px 30px 30px;
+}
+
+.schedule-number {
+  color: lightslategray;
+  margin-top: 0px;
+  margin-bottom: 30px;
+}
+
+label {
+  display: block;
+}
+
+button {
+  font-size: 20px;
+}
+
+#add-schedules {
+  background-color: lightblue;
+}
+
+#submit-schedules {
+  background-color: lightcoral;
+}

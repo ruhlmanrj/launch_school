@@ -43,6 +43,7 @@ function generateSequence() {
  * 
  */
 router.get('/staff_members', function(req, res, next) {
+  res.set('Access-Control-Allow-Origin', '*');
   db.all('SELECT * FROM STAFFS;', function(err, rows) {
     res.json(rows);
   });
@@ -69,8 +70,8 @@ router.get('/staff_members', function(req, res, next) {
  * 
  */
 router.get('/students', function(req, res, next) {
+  res.set('Access-Control-Allow-Origin', '*');
   db.all('SELECT * FROM STUDENTS;', function(err, rows) {
-    res.set('Access-Control-Allow-Origin', '*');
     res.json(rows);
   });
 });
@@ -106,13 +107,13 @@ router.get('/students', function(req, res, next) {
  *     ]
  */
 router.get('/schedules', function(req, res, next) {
+  res.set('Access-Control-Allow-Origin', '*');
   db.all('SELECT * FROM BOOKINGS;', function(err, rows) {
     const rand = Math.random();
     if (rand >= 0.5 && rows.length > 7) {      
-      sleep(7000);
+      sleep(0);
     }
 
-    res.set('Access-Control-Allow-Origin', '*');
     res.json(rows);    
   });
 });
@@ -140,6 +141,7 @@ router.get('/schedules', function(req, res, next) {
  *     ]
  */
 router.get('/schedules/:staff_id', function(req, res, next) {
+  res.set('Access-Control-Allow-Origin', '*');
   db.all(`SELECT * FROM BOOKINGS WHERE staff_id = ${req.params['staff_id']}`, function(err, rows) {
     res.json(rows);
   });
@@ -206,6 +208,9 @@ router.post('/staff_members', function(req, res, next) {
  */
 router.post('/schedules', function(req, res, next) {
   const schedules = req.body['schedules'];
+  res.set('Access-Control-Allow-Origin', '*');
+  console.log(schedules);
+
   if (areSchedulesValid(schedules)) {
     schedules.forEach(function(schedule) {
       db.run('INSERT INTO BOOKINGS (staff_id, date, time) VALUES ($staff_id, $date, $time);', {
@@ -214,7 +219,6 @@ router.post('/schedules', function(req, res, next) {
         $time: schedule.time
       });
     });
-    
     res.status(201).send('Schedules added');
   } else {
     res.status(400).send('Please check your inputs');
@@ -242,6 +246,7 @@ router.post('/schedules', function(req, res, next) {
  *     'Student does not exist; booking_sequence: {sequence}'
  */
 router.post('/bookings', function(req, res, next) {
+  res.set('Access-Control-Allow-Origin', '*');
   const email = req.body['student_email'];
   const id = req.body['id'];
   
@@ -288,6 +293,7 @@ router.post('/bookings', function(req, res, next) {
  */
 router.post('/students', function(req, res, next) {
   const student_details = req.body;
+  res.set('Access-Control-Allow-Origin', '*');
 
   db.get('SELECT * FROM BOOKING_SEQUENCES WHERE SEQUENCE = $sequence;', { $sequence: student_details.booking_sequence }, function(err, row) {
     if (row) {
@@ -312,6 +318,8 @@ router.post('/students', function(req, res, next) {
  *     ['07-03-18', '08-02-18']
  */
 router.get('/bookings', function(req, res, next) {
+  res.set('Access-Control-Allow-Origin', '*');
+
   db.all('SELECT * FROM BOOKINGS;', function(err, rows) {
     const dates = rows.filter(function(schedule) {
       return schedule.date && schedule.student_email;
@@ -335,6 +343,8 @@ router.get('/bookings', function(req, res, next) {
  *     [["Vincent Ortiz","garth@king.org","06:00"],["Laurine Feil","garth@king.org","06:00"]]
  */
 router.get('/bookings/:date', function(req, res, next) {
+  res.set('Access-Control-Allow-Origin', '*');
+
   db.all('SELECT STAFFS.NAME, BOOKINGS.DATE, BOOKINGS.TIME, BOOKINGS.STUDENT_EMAIL FROM BOOKINGS JOIN STAFFS ON BOOKINGS.STAFF_ID = STAFFS.ID;', function(err, rows) {
     const booking_details = rows.filter(function(schedule) {
       return schedule.date === req.params['date'] && schedule.student_email;
@@ -362,6 +372,8 @@ router.get('/bookings/:date', function(req, res, next) {
  * 
  */
 router.put('/bookings/:booking_id', function(req, res, next) {
+  res.set('Access-Control-Allow-Origin', '*');
+
   db.get('SELECT * FROM BOOKINGS WHERE ID = $id and STUDENT_EMAIL IS NOT NULL;', { $id: req.params['booking_id'] }, function(err, row) {
     if (row) {
       db.run('UPDATE BOOKINGS SET STUDENT_EMAIL = NULL WHERE ID = $id;', { $id: req.params['booking_id'] });
@@ -392,6 +404,8 @@ router.put('/bookings/:booking_id', function(req, res, next) {
  * 
  */
 router.delete('/schedules/:schedule_id', function(req, res, next) {
+    res.set('Access-Control-Allow-Origin', '*');
+
   db.get('SELECT * FROM BOOKINGS WHERE ID = $id;', { $id: req.params['schedule_id'] }, function(err, row) {
     if (row) {
       if (row.student_email) {
@@ -407,6 +421,8 @@ router.delete('/schedules/:schedule_id', function(req, res, next) {
 });
 
 router.get('/reset', function(req, res, next) {
+  res.set('Access-Control-Allow-Origin', '*');
+
   const sql = fs.readFileSync(path.join(__dirname, '../db/seed_data.sql')).toString();
   db.exec(sql, function(error){
     if (error) {

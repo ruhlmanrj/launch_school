@@ -1,6 +1,0 @@
-- 5 staff
-- 5 students
-- 9 schedules
-- 3 booked schedules
-- All staff do not have schedules
-- All students did not book a schedule
