@@ -1,0 +1,41 @@
+html {
+  font: 16px normal helvetica, arial, sans-serif;
+}
+
+body {
+  background: darkred;
+}
+
+#container {
+  background: whitesmoke;
+  border: 1px solid black;
+  border-radius: 4px;
+  height: 180px;
+  margin: 50px auto 0px auto;
+  width: 450px;
+}
+
+#result {
+  color: green;
+  font-size: 2rem;
+  margin: 60px 20px 30px 30px;
+}
+
+#calculation {
+  margin-left: 30px;
+}
+
+.operand {
+  font-size: 1.3rem;
+  width: 20%;
+}
+
+[name="operation"],
+[type="submit"],
+[type="reset"] {
+  font-size: 1.2rem;
+}
+
+[type="reset"] {
+  margin-left: 70px;
+}

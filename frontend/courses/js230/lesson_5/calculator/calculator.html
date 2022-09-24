@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>calculator</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="calculator.css" />
+    <script src="calculator.js" defer></script>
+  </head>
+  <body>
+    <div id="container">
+      <p id="result">0</p>
+      <form id="calculation" action="#">
+        <input class="operand" type="number" name="left-number" value="0" step="any"/>
+        <select name="operation">
+          <option value="add">+</value>
+          <option value="subtract">-</value>
+          <option value="multiply">*</value>
+          <option value="divide">/</value>
+        </select>
+        <input class="operand" type="number" name="right-number" value="0" step="any"/>
+        <input type="submit" value="=" />
+        <input type="reset" value="clear" />
+      </form>
+    </div>
+  </body>
+</html>
