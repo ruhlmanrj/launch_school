@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>langInfo</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="langInfo.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="langInfo.js" defer></script>
+  </head>
+  <body>
+    <h1>Programming Languages</h1>
+    <dl id="lang-list"></dl>
+
+    <script id="descriptions" type="text/x-handlebars">
+      {{#each descriptions}}
+        {{>description}}
+      {{/each}}
+    </script>
+
+    <script id="description" type="text/x-handlebars">
+      <dt><h2>{{this.name}}</h2></dt>
+      <dd>
+        {{#if this.short}}
+          <p>{{this.complete}}</p>
+        {{else}}
+          <p>{{this.partial}}</p>
+          <p class="hidden">{{this.complete}}</p>
+          <a href="#">Show More</a>
+          <a class="hidden" href="#">Show Less</a>
+        {{/if}}
+      </dd>
+    </script>
+  </body>
+</html>
+
