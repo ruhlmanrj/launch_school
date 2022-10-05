@@ -1,0 +1,66 @@
+html {
+  font: 16px Times, Arial, sans-serif;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+form {
+  background: #e29921;
+  color: white;
+  padding: 20px 0px 10px 20px;
+}
+
+form select, form button {
+  background: #e29921;
+  border-color: white;
+  color: white;
+  border-radius: 4px;
+  margin: 0 5px;
+  padding: 2px;
+  width: 80px;
+}
+
+form button {
+  border-style:solid;
+  border-width: 1px;
+  display: inline-block;
+  margin-left: 15px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  width: 60px;
+}
+
+ul {
+  padding: 10px;
+}
+
+li {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+img {
+  border-radius: 2px;
+  width: 200px;
+}
+
+li p {
+  margin: 5px 0;
+}
+
+.make-model {
+  font-weight: bold;
+}
+
+.buy-button {
+  background: #e29921;
+  border-radius: 4px;
+  color: white;
+  border-style: none;
+  display: inline-block;
+  padding: 5px 7px;
+}
