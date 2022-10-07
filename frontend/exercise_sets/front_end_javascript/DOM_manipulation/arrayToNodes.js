@@ -3,14 +3,12 @@
  * creates the DOM tree it represents.
  */
 
-function arrayToNodes(childrenData, parent = document.body) {
-  if (childrenData[0] === 'BODY') {
-    childrenData = childrenData[1];
+ function arrayToNodes([ tagName, childArrays ]) {
+  const parent = document.createElement(tagName);
+
+  for (const array of childArrays) {
+    parent.appendChild(arrayToNodes(array));
   }
 
-  childrenData.forEach(([ tagName, grandChildren ]) => {
-    const childElement = document.createElement(tagName);
-    parent.appendChild(childElement);
-    arrayToNodes(grandChildren, childElement);
-  });
+  return parent;
 }

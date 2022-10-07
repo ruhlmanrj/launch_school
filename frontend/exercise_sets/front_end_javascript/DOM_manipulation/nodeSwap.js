@@ -1,31 +1,29 @@
 /**
- * Swaps the positions of two elements in the DOM. Uses `sliceTree` function
- * from sliceTree.js to ascertain whether parent-child relationship exists
- * between elements.
+ * Swaps the positions of two elements in the DOM.
  */
 
-const nodeSwap = (() => {
-  const nodesArevalid = (ancestor, child) => {
-    return ancestor && child && !ancestor.contains(child);
-   }
-  
-  const swapNodes = (node1, node2) => {
-    const placeholder = document.createElement('p');
-  
-    node1.replaceWith(placeholder);
-    node2.replaceWith(node1);
-    placeholder.replaceWith(node2);
+ function nodeSwap(idA, idB) {
+  const nodeA = document.getElementById(idA);
+  const nodeB = document.getElementById(idB);
+
+  if (!nodeA || !nodeB || areAncestors(nodeA, nodeB)) {
+    return;
   }
 
-  return function (idA, idB) {
-    [smallerId, largerId] = [idA, idB].map(Number).sort();
-  
-    const ancestor = document.getElementById(String(smallerId));
-    const child = document.getElementById(String(largerId));
-  
-    if (nodesArevalid(ancestor, child)) {
-      swapNodes(ancestor, child);
-      return true;
-    }
-  }
-})();
+  performSwap(nodeA, nodeB);
+}
+
+function areAncestors(nodeA, nodeB) {
+  const idSelector = ({ id }) => `[id="${id}"]`;
+  const isAncestor = (parent, child) => !!child.closest(idSelector(parent));
+
+  return isAncestor(nodeA, nodeB) || isAncestor(nodeB, nodeA)
+}
+
+function performSwap(nodeA, nodeB) {
+  const placehold = document.createElement('div');
+  nodeB.replaceWith(placehold);
+
+  nodeA.replaceWith(nodeB);
+  placehold.replaceWith(nodeA);
+}

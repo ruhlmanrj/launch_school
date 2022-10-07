@@ -3,38 +3,24 @@
 // chain from the innermost child up to and including the outermost parent; or
 // undefined if no such chain exists.
 
-function traceToParent(child, lastParentId) {
-  const parent = child.parentElement;
+function sliceTree(start, end) {
+  const nodeStart = document.getElementById(start);
+  const nodeEnd = document.getElementById(end);
 
-  if (child.id === String(lastParentId)) {
-    return [child.tagName];
+  const isNotAncestor = !nodeEnd.closest(`[id="${start}"]`);
+  if (!nodeStart || !nodeEnd || start > end || isNotAncestor) {
+    return;
   }
 
-  if (parent.tagName === 'BODY') {
-    return undefined;
-  }
+  const nodes = [];
+  let node = nodeEnd;
 
-  const trace = traceToParent(parent, lastParentId);
-  if (trace) {
-    return [...trace, child.tagName];
-  } else {
-    return undefined;
-  }
-}
+  do {
+    nodes.push(node.tagName);
+    node = node.parentNode;
+  } while (+node.id >= start)
 
-function sliceTree(startId, endId) {
-  if (startId > endId) {
-    return undefined;
-  }
-
-  const outermostParent = document.getElementById(startId);
-  const innermostChild = document.getElementById(endId);
-
-  if (!outermostParent || !innermostChild) {
-    return undefined;
-  }
-
-  return traceToParent(innermostChild, startId);
+  return nodes.reverse();
 }
 
 console.log(sliceTree(1, 4));
