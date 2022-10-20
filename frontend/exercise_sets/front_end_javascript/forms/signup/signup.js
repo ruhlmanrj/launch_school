@@ -4,6 +4,7 @@ const signup = {
   init() {
     this.form = document.querySelector('form');
     this.cards = document.querySelector('#cards');
+    this.formDataMessage = document.querySelector('#form-data-message');
     this.templates = {};
     this.disallowedChars = {
       'first-name': /[^a-zA-z'\s]/,
@@ -67,8 +68,13 @@ const signup = {
   },
 
   handleSubmit(e) {
-    if (this.form.checkValidity()) { return; }
     e.preventDefault();
+
+    if (this.form.checkValidity()) {
+      this.displayFormData();
+      this.form.reset();
+      return;
+    }
 
     this.displayControlErrors();
 
@@ -82,6 +88,15 @@ const signup = {
     if (this.isInvalidControlKey(e.target, e.key)) {
       e.preventDefault();
     }
+  },
+
+  displayFormData() {
+    const data = new FormData(this.form);
+    const cardNumber = data.getAll('card').join('');
+    data.set('card', cardNumber);
+
+    const params = new URLSearchParams(data);
+    this.formDataMessage.textContent = params;
   },
 
   getValidityMessage(control) {

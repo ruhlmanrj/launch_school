@@ -60,3 +60,12 @@ span {
   text-align: center;
   width: 3rem;
 }
+
+#form-data-message {
+  background: white;
+  font-size: 1.2rem;
+  width: 90%;
+  margin: 20px auto;
+  text-align: center;
+  word-break: break-all;
+}
