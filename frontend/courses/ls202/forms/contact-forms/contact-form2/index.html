@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Practice</title>
+  <link rel="stylesheet" href="stylesheets/styles.css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <form action="#" method="post">
+    <h1>Contact Us</h1>
+    <fieldset class="personal-info">
+      <legend>Your info</legend>
+      <ul>
+        <li>
+          <label for="first-name">First Name:</label>
+          <input type="text" name="first-name" id="first-name" required>
+        </li>
+        <li>
+          <label for="last-name">Last Name:</label>
+          <input type="text" name="last-name" id="last-name" required>
+        </li>
+        <li>
+          <label for="email">Email:</label>
+          <input type="email" name="email" id="email" pattern="^[^@\s]+@[^@\s][^@\s\.]+.[^@\.\s]+$"
+            placeholder="abc@123.com" required>
+        </li>
+        <li>
+          <label for="city">City:</label>
+          <input type="text" name="city" id="city">
+        </li>
+        <li>
+          <label for="state">State:</label>
+          <select name="state" id="state" required>
+            <option value="" disabled selected>Choose</option>
+            <option>AK</option>
+            <option>AL</option>
+            <option>AR</option>
+            <option>AZ</option>
+            <option>CA</option>
+            <option>CO</option>
+            <option>CT</option>
+            <option>DC</option>
+            <option>DE</option>
+            <option>FL</option>
+            <option>GA</option>
+            <option>HI</option>
+            <option>IA</option>
+            <option>ID</option>
+            <option>IL</option>
+            <option>IN</option>
+            <option>KS</option>
+            <option>KY</option>
+            <option>LA</option>
+            <option>MA</option>
+            <option>MD</option>
+            <option>ME</option>
+            <option>MI</option>
+            <option>MN</option>
+            <option>MO</option>
+            <option>MS</option>
+            <option>MT</option>
+            <option>NC</option>
+            <option>ND</option>
+            <option>NE</option>
+            <option>NH</option>
+            <option>NJ</option>
+            <option>NM</option>
+            <option>NV</option>
+            <option>NY</option>
+            <option>OH</option>
+            <option>OK</option>
+            <option>OR</option>
+            <option>PA</option>
+            <option>RI</option>
+            <option>SC</option>
+            <option>SD</option>
+            <option>TN</option>
+            <option>TX</option>
+            <option>UT</option>
+            <option>VA</option>
+            <option>VT</option>
+            <option>WA</option>
+            <option>WI</option>
+            <option>WV</option>
+            <option>WY</option>
+            <option>AL</option>
+            <option>AR</option>
+            <option>AZ</option>
+            <option>CA</option>
+            <option>CO</option>
+            <option>CT</option>
+            <option>DC</option>
+            <option>DE</option>
+            <option>FL</option>
+            <option>GA</option>
+            <option>HI</option>
+            <option>IA</option>
+            <option>ID</option>
+            <option>IL</option>
+            <option>IN</option>
+            <option>KS</option>
+            <option>KY</option>
+            <option>LA</option>
+            <option>MA</option>
+            <option>MD</option>
+            <option>ME</option>
+            <option>MI</option>
+            <option>MN</option>
+            <option>MO</option>
+            <option>MS</option>
+            <option>MT</option>
+            <option>NC</option>
+            <option>ND</option>
+            <option>NE</option>
+            <option>NH</option>
+            <option>NJ</option>
+            <option>NM</option>
+            <option>NV</option>
+            <option>NY</option>
+            <option>OH</option>
+            <option>OK</option>
+            <option>OR</option>
+            <option>PA</option>
+            <option>RI</option>
+            <option>SC</option>
+            <option>SD</option>
+            <option>TN</option>
+            <option>TX</option>
+            <option>UT</option>
+            <option>VA</option>
+            <option>VT</option>
+            <option>WA</option>
+            <option>WI</option>
+            <option>WV</option>
+            <option>WY</option>
+          </select>
+        </li>
+        <li>
+          <label for="zip">Zip Code:</label>
+          <input type="tel" name="zip" id="zip" minlength="5" maxlength="5" pattern="\d{5}" placeholder="12345"
+            required>
+        </li>
+      </ul>
+    </fieldset>
+
+
+
+    <fieldset class="more-info">
+      <legend>Tell us more about yourself.</legend>
+      <ul class="colors">
+        <li>
+          <p>Which of these colors do you like best?</p>
+          <ul class="fav-color">
+            <li>
+              <label for="color1">Red</label>
+              <input type="radio" name="color" id="color1" value="red" checked required>
+            </li>
+            <li>
+              <label for="color2">Green</label>
+              <input type="radio" name="color" id="color2" value="green" required>
+            </li>
+            <li>
+              <label for="color3">Blue</label>
+              <input type="radio" name="color" id="color3" value="blue" required>
+            </li>
+            <li>
+              <label for="color4">Pink</label>
+              <input type="radio" name="color" id="color4" value="pink" checked required>
+            </li>
+          </ul>
+        </li>
+        <li class="tech">
+          <label for="tech">Which web technologies do you want to learn?</label>
+          <select name="tech" id="tech" multiple size="4">
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="javascript">JavaScript</option>
+            <option value="ruby">Ruby</option>
+            <option value="rails">Rails</option>
+          </select>
+        </li>
+      </ul>
+    </fieldset>
+
+    <fieldset class="message">
+      <label for="message">Anything else you'd like to tell us?</label>
+      <textarea name="message" id="message" placeholder="Your message goes here."></textarea>
+    </fieldset>
+
+    <input type="hidden" name="time" value="2022-10-30">
+    <button type="submit">Send</button>
+    <input type="reset" value="Clear form">
+  </form>
+</body>
+
+
+</html>

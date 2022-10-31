@@ -1,0 +1,154 @@
+@import url("reset.css");
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+input::-webkit-inner-spin-button {
+  appearance: none;
+}
+
+body {
+  color: #2c2c2c;
+  font: 1rem normal Roboto, Helvetica, Arial, sans-serif;
+  padding: 1rem;
+}
+
+form {
+  border: 1px solid #ccc;
+  margin: auto;
+  padding: 2rem;
+  width: 90%;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+legend,
+ul {
+  margin-bottom: 0.5rem;
+}
+
+ul {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+}
+
+ul ul {
+  border: none;
+  padding: 0;
+}
+
+legend {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.personal-info ul {
+  margin-bottom: 2rem;
+}
+
+.personal-info li {
+  font-size: 0;
+  margin-bottom: 1rem;
+}
+
+.personal-info label,
+.personal-info input {
+  font-size: 1rem;
+}
+
+.personal-info label {
+  display: inline-block;
+  padding-right: 1rem;
+  text-align: right;
+  width: 7rem;
+  vertical-align: middle;
+}
+
+.personal-info input,
+.personal-info select,
+select,
+textarea,
+button,
+input[type="reset"] {
+  color: #2c2c2c;
+  font: 1rem normal Roboto, Helvetica, Arial, sans-serif;
+}
+
+.personal-info input {
+  line-height: 2rem;
+  padding-left: 0.5rem;
+  vertical-align: middle;
+  width: calc(100% - 7rem);
+}
+
+.personal-info select {
+  padding: 0.4rem;
+}
+
+.more-info p {
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+}
+
+.colors {
+  margin-bottom: 2rem;
+}
+
+.fav-color li {
+  display: inline-block;
+}
+
+.fav-color label {
+  margin-right: -0.25rem;
+}
+
+.fav-color input {
+  margin-right: 0.75rem;
+}
+
+.fav-color {
+  margin-bottom: 2rem;
+  padding-left: 0.5rem;
+}
+
+.tech label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+}
+
+.tech select {
+  margin-left: 0.5rem;
+  padding: 0.4rem;
+}
+
+.message label {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+}
+
+textarea {
+  height: 8rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+button, input[type="reset"] {
+  cursor: pointer;
+  border: 1px solid #aaa;
+  border-radius: 0.5rem;
+  margin-right: 1rem;
+  padding: 0.4rem 1rem
+}
+
+button:active, input[type="reset"]:active {
+  box-shadow: 1px 1px 4px inset;
+} 
