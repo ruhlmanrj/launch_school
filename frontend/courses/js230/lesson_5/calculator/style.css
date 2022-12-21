@@ -1,0 +1,58 @@
+@import url('reset.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+html {
+  font: 16px Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: #790920;
+}
+
+main {
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 40px auto;
+  max-width: 500px;
+  padding: 40px 30px 30px;
+}
+
+p {
+  color: green;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.error {
+  color: red;
+}
+
+button,
+input,
+select {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  height: 32px;
+  vertical-align: middle;
+}
+
+input[type='text'] {
+  width: 80px;
+  padding: 0.2em 0.4em;
+}
+
+button,
+input[type='reset'] select {
+  cursor: pointer;
+}
+
+select {
+  background-color: lightgoldenrodyellow;
+  padding-left: 0.2em;
+}
+
+button {
+  width: 40px;
+}

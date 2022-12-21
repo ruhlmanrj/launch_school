@@ -1,0 +1,118 @@
+@import url('reset.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+html {
+  font: 16px Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: #5bccb3;
+}
+
+button {
+  cursor: pointer;
+}
+
+main {
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 28px auto;
+  padding: 25px 20px;
+  width: 450px;
+}
+
+.reset-app {
+  background-color: #dfdfdf;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  color: #fff;
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  margin-left: auto;
+  padding: 0.3em 0.5em;
+}
+
+.item-form h2,
+.item-form label {
+  color: #15987b;
+  font-weight: bold;
+}
+
+.item-form h2 {
+  font-size: 1.5rem;
+}
+
+.item-form ul {
+  margin: 24px 0 18px;
+}
+
+.item-form label {
+  display: inline-block;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.item-form li:first-child {
+  margin-bottom: 20px;
+}
+
+.item-form input {
+  border-radius: 5px;
+  border: 1px solid #d4d4d4;
+  display: block;
+  font-size: 24px;
+  height: 50px;
+  padding: 0 0.5rem;
+  width: 100%;
+}
+
+.item-form [type='number'] {
+  width: 20%;
+}
+
+.item-form button {
+  border: 1px solid #88022b;
+  border-radius: 12px;
+  background-image: linear-gradient(to bottom, #cf173e, #780c23);
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  height: 58px;
+  width: 100%;
+}
+
+section.grocery-list {
+  margin-top: 48px;
+}
+
+.grocery-list h2 {
+  color: #cc173e;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.grocery-list ul {
+  color: #00886f;
+  list-style-type: disc;
+  font-size: 18px;
+  margin-left: 50px;
+}
+
+.grocery-list li {
+  padding: 10px 0;
+}
+
+.grocery-list li + li {
+  border-top: 1px solid #f1f1f1;
+}
+
+@media print {
+  .item-form,
+  .reset-app {
+    display: none;
+  }
+}

@@ -1,26 +1,30 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>calculator</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="calculator.css" />
-    <script src="calculator.js" defer></script>
-  </head>
-  <body>
-    <div id="container">
-      <p id="result">0</p>
-      <form id="calculation" action="#">
-        <input class="operand" type="number" name="left-number" value="0" step="any"/>
-        <select name="operation">
-          <option value="add">+</value>
-          <option value="subtract">-</value>
-          <option value="multiply">*</value>
-          <option value="divide">/</value>
-        </select>
-        <input class="operand" type="number" name="right-number" value="0" step="any"/>
-        <input type="submit" value="=" />
-        <input type="reset" value="clear" />
-      </form>
-    </div>
-  </body>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>My Site</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.6.2.min.js"
+    integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <main>
+    <p>0</p>
+    <form action="#">
+      <input type="text" name="left-number" value="0" required pattern="-?\d*\.?\d+">
+      <select name="operation">
+        <option>+</option>
+        <option>-</option>
+        <option>*</option>
+        <option>/</option>
+      </select>
+      <input type="text" name="right-number" value="0" required pattern="-?\d*\.?\d+">
+      <button type="submit">=</button>
+      <button class="clear-btn">AC</button>
+    </form>
+  </main>
+</body>
+
 </html>
