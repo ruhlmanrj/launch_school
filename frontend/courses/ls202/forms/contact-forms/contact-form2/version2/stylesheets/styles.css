@@ -48,25 +48,44 @@ legend {
 }
 
 .personal-info ul {
+  font-size: 0;
   margin-bottom: 2rem;
 }
 
 .personal-info li {
-  font-size: 0;
   margin-bottom: 1rem;
+  padding: 0.75rem
 }
 
 .personal-info label,
-.personal-info input {
+.personal-info input,
+.personal-info select {
+  display: block;
   font-size: 1rem;
 }
 
 .personal-info label {
+  margin-bottom: 0.25rem;
+}
+
+li.name, li.address {
   display: inline-block;
-  padding-right: 1rem;
-  text-align: right;
-  width: 7rem;
-  vertical-align: middle;
+}
+
+li.name {
+  width: 50%;
+}
+
+li.city {
+  width: 50%;
+}
+
+li.state {
+  width: 20%;
+}
+
+li.zip {
+  width: 30%;
 }
 
 .personal-info input,
@@ -83,11 +102,12 @@ input[type="reset"] {
   line-height: 2rem;
   padding-left: 0.5rem;
   vertical-align: middle;
-  width: calc(100% - 7rem);
+  width: 100%;
 }
 
 .personal-info select {
   padding: 0.4rem;
+  width: 100%
 }
 
 .more-info p {
@@ -141,14 +161,16 @@ textarea {
   width: 100%;
 }
 
-button, input[type="reset"] {
+button,
+input[type="reset"] {
   cursor: pointer;
   border: 1px solid #aaa;
   border-radius: 0.5rem;
   margin-right: 1rem;
-  padding: 0.4rem 1rem
+  padding: 0.4rem 1rem;
 }
 
-button:active, input[type="reset"]:active {
+button:active,
+input[type="reset"]:active {
   box-shadow: 1px 1px 4px inset;
-} 
+}

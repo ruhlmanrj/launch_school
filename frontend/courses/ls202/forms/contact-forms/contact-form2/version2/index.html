@@ -13,25 +13,25 @@
     <fieldset class="personal-info">
       <legend>Your info</legend>
       <ul>
-        <li>
-          <label for="first-name">First Name:</label>
+        <li class="name">
+          <label for="first-name">First Name</label>
           <input type="text" name="first-name" id="first-name" required>
         </li>
-        <li>
-          <label for="last-name">Last Name:</label>
+        <li class="name">
+          <label for="last-name">Last Name</label>
           <input type="text" name="last-name" id="last-name" required>
         </li>
         <li>
-          <label for="email">Email:</label>
+          <label for="email">Email</label>
           <input type="email" name="email" id="email" pattern="^[^@\s]+@[^@\s][^@\s\.]+.[^@\.\s]+$"
             placeholder="abc@123.com" required>
         </li>
-        <li>
-          <label for="city">City:</label>
+        <li class="address city">
+          <label for="city">City</label>
           <input type="text" name="city" id="city">
         </li>
-        <li>
-          <label for="state">State:</label>
+        <li class="address state">
+          <label for="state">State</label>
           <select name="state" id="state" required>
             <option value="" disabled selected>Choose</option>
             <option>AK</option>
@@ -137,15 +137,13 @@
             <option>WY</option>
           </select>
         </li>
-        <li>
-          <label for="zip">Zip Code:</label>
+        <li class="address zip">
+          <label for="zip">Zip Code</label>
           <input type="tel" name="zip" id="zip" minlength="5" maxlength="5" pattern="\d{5}" placeholder="12345"
             required>
         </li>
       </ul>
     </fieldset>
-
-
 
     <fieldset class="more-info">
       <legend>Tell us more about yourself.</legend>
