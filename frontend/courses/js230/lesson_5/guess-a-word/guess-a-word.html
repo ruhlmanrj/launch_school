@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>App</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
+    integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://code.jquery.com/jquery-3.6.2.min.js"
+    integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <script src="javascripts/app.js" defer></script>
+</head>
+
+<body>
+  <main>
+    <img src="images/tree.png" alt="A tree with apples">
+    <div class="apples-wrapper">
+      <img class="apples" src="images/apples.png" alt="Apples on the tree">
+    </div>
+
+    <p class="result-msg hidden"></p>
+    <a class="new-word link hidden" href="#">Play another</a>
+    <a class="new-game link hidden" href="#">Refresh words</a>
+
+    <div class="letters words-wrapper">
+      <h2>Word:</h2>
+      <ul class="word"></ul>
+    </div>
+    <div class="letters">
+      <h2>Guesses:</h2>
+      <ul class="guesses"></ul>
+    </div>
+  </main>
+
+  <script id="word-template" type="template/x-handlebars">
+    {{#each .}}
+      <li>{{.}}</li>
+    {{/each}}
+  </script>
+
+  <script id="guess-template" type="template/x-handlebars">
+    <li>{{.}}</li>
+  </script>
+
+
+</body>
+
+</html>
