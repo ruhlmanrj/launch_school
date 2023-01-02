@@ -1,0 +1,75 @@
+@import url('reset.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+html {
+  color: #222;
+  font: 18px Times, serif;
+}
+
+body {
+  background-color: #eee9ce;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin: 22px 0 33px;
+}
+
+form {
+  width: 603px;
+  margin: auto;
+}
+
+.question {
+  line-height: 1.2;
+  margin-top: 10px;
+}
+
+cite {
+  font-style: italic;
+}
+
+input[type='radio'] {
+  margin-left: 0;
+}
+
+fieldset {
+  margin: 10px 0 4px;
+}
+
+fieldset li {
+  margin-bottom: 8px;
+}
+
+.result-msg {
+  height: 36px;
+  line-height: 36px;
+  padding-left: 5px;
+}
+
+.correct {
+  border: 1px solid green;
+}
+
+.incorrect {
+  border: 1px solid red;
+}
+
+button {
+  border: none;
+  border-radius: 3px;
+  font: 1rem Times, serif;
+  margin-top: 5px;
+  padding: 6px 14px;
+}
+
+.submit {
+  background-color: #ccc;
+}
+
+.reset {
+  background-color: #55ec39;
+}
