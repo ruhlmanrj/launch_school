@@ -1,0 +1,51 @@
+@import url('reset.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+html {
+  color: #333;
+  font: 16px Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: aliceblue;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 20px 30px 40px;
+}
+
+ul {
+  width: 400px;
+  margin: auto;
+}
+
+li {
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #000;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+p {
+  background-color: #fff;
+  border: 1px solid #efefef;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  padding: 10px;
+  transition: height 10s;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
