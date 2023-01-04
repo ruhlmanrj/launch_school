@@ -52,14 +52,14 @@ class TodosApp {
   }
 
   bindHandlers() {
-    this.view.elms.$todos.click(e => this.handleFirstDelete(e));
-    this.view.elms.$popup.click(e => this.handleSecondDelete(e));
+    this.view.elms.$todos.on('click', '.delete', e => this.handleFirstDelete(e));
+    this.view.elms.$popup.on('click', 'button', e => this.handleSecondDelete(e));
     this.view.elms.$overlay.click(() => this.view.hideConfirmPrompt());
   }
 
   handleFirstDelete(e) {
     const id = $(e.target).attr('data-id');
-    if (id) this.view.showConfirmPrompt(id);
+    this.view.showConfirmPrompt(id);
   }
 
   handleSecondDelete(e) {
