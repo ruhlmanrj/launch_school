@@ -39,7 +39,7 @@ p {
   margin-bottom: 8px;
   overflow: hidden;
   padding: 10px;
-  transition: height 10s;
+  transition: height 0.4s;
 }
 
 .hidden {

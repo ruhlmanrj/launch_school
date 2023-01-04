@@ -48,9 +48,19 @@
     {{#each this}}
     <li>
       <h2>{{name}}</h2>
-      <p data-lang="{{name}}">{{shorten description}}</p>
+
+      <p data-lang="{{name}}">
+      {{#if (longText)}}
+      {{shorten description}}
+      {{else}}
+      {{description}}
+      {{/if}}
+      </p>
+
+      {{#if (longText)}}
       <button data-show="more" data-lang="{{name}}">Show More</button>
       <button class="hidden" data-show="less" data-lang="{{name}}">Show Less</button>
+      {{/if}}
     </li>
     {{/each}}
   </script>

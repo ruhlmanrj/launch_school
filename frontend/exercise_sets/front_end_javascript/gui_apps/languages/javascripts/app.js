@@ -9,11 +9,7 @@ class Model {
         name: 'Ruby',
         description:
           'Ruby is a dynamic, reflective, object-oriented, ' +
-          'general-purpose programming language. It was designed and developed in the mid-1990s ' +
-          'by Yukihiro Matsumoto in Japan. According to its creator, Ruby was influenced by Perl, ' +
-          'Smalltalk, Eiffel, Ada, and Lisp. It supports multiple programming paradigms, ' +
-          'including functional, object-oriented, and imperative. It also has a dynamic type ' +
-          'system and automatic memory management.',
+          'general-purpose programming language.'
       },
 
       {
@@ -59,6 +55,10 @@ class View {
 
   rendersLangs() {
     Handlebars.registerHelper('shorten', (text) => `${text.slice(0, 120)}...`);
+    Handlebars.registerHelper('longText', function () {
+      console.log(this);
+      return this.description.length > 120;
+    });
 
     const tempTxt = document.querySelector('[data-name="lang-list-temp"]').text;
     const tempFxn = Handlebars.compile(tempTxt);
@@ -107,7 +107,7 @@ class View {
     d.style.height = tallHeight;
 
     setTimeout(() => (d.style.height = shortHeight), 0);
-    setTimeout(() => (d.textContent = partialText), 1000);
+    setTimeout(() => (d.textContent = partialText), 400);
   }
 
   expandDescription(description) {
@@ -130,7 +130,7 @@ class View {
     oldBtn.classList.add('hidden');
 
     newBtn.disabled = true;
-    setTimeout(() => newBtn.disabled = false, 1000);
+    setTimeout(() => (newBtn.disabled = false), 400);
   }
 
   calcHeightFor(element) {
