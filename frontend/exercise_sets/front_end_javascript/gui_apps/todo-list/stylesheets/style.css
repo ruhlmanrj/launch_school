@@ -1,0 +1,100 @@
+@import url('reset.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+html {
+  color: #333;
+  font: 16px Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: aliceblue;
+}
+
+main {
+  background-color: #fff;
+  border: 1px solid skyblue;
+  border-radius: 5px;
+  width: 475px;
+  margin: auto;
+}
+
+h1 {
+  color: lightcoral;
+  font-size: 26px;
+  font-weight: bold;
+  width: 475px;
+  margin: 20px auto 10px;
+}
+
+li {
+  align-items: center;
+  display: flex;
+  font-size: 20px;
+  justify-content: space-between;
+  padding: 18px;
+}
+
+li p {
+  display: inline-block;
+}
+
+.separator {
+  border-bottom: 1px solid #ccc;
+  width: 95%;
+  margin: auto;
+}
+
+button {
+  background-color: rgba(200, 200, 200, 0.2);
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  color: #444;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 6px 16px;
+}
+
+.delete {
+  background-color: rgba(239, 128, 128, 0.15);
+  border: 1px solid lightcoral;
+  border-radius: 3px;
+  color: lightcoral;
+}
+
+.separator:last-child {
+  display: none;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  display: none;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.popup-confirm {
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 5px;
+  display: none;
+  font-size: 18px;
+  left: 50%;
+  padding: 20px 20px 10px;
+  position: absolute;
+  text-align: center;
+  top: 25%;
+  transform: translate(-50%);
+  width: 220px;
+}
+
+.popup-confirm p {
+  margin-bottom: 20px;
+}
+
+.popup-confirm button {
+  margin-bottom: 15px;
+}
