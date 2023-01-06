@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Vehicle Filter</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
+    integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://code.jquery.com/jquery-3.6.2.min.js"
+    integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <script src="javascripts/app.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>Find-A-Vehicle</h1>
+    <form action="#" method="GET">
+      <ul class="filters"></ul>
+      <button type="submit">Filter</button>
+    </form>
+  </header>
+  <main>
+    <ul class="vehicles">
+      <p class="status-msg">Awaiting selections...</p>
+      <!-- <li>
+        <figure><img
+            src="https://hips.hearstapps.com/hmg-prod/images/2022-honda-civic-hatchback-sport-touring-309-1634066512.jpg?crop=0.554xw:0.415xh;0.327xw,0.525xh&resize=1200:*"
+            alt="Honda Civic">
+          <figcaption>
+            <ul class="properties">
+              <li>
+                <p class="property">Make:</p>
+                <p class="value">Honda</p>
+              </li>
+              <li>
+                <p class="property">Model:</p>
+                <p class="value">Civic</p>
+              </li>
+              <li>
+                <p class="property">Price:</p>
+                <p class="value">$20,000</p>
+              </li>
+              <li>
+                <p class="property">Year:</p>
+                <p class="value">2022</p>
+              </li>
+            </ul>
+          </figcaption>
+        </figure>
+      </li> -->
+    </ul>
+  </main>
+
+  <script id="filters-template" type="template/x-handlebars">
+    {{#each this}}
+    <li>
+      <label>
+        <p class="label-text">{{property}}</p>
+        <select name="{{property}}">
+          <option>Any</option>
+          {{#each options}}
+          <option>{{this}}</option>
+          {{/each}}
+        </select>
+      </label>
+    </li>
+    {{/each}}
+  </script>
+
+  <script id="vehicles-template" type="text/x-handlebars">
+    {{#each this}}
+    <li>
+      <figure>
+        <img src="{{image}}" alt="{{make}} {{model}}">
+        <figcaption>
+          <ul class="properties">
+            {{#each properties}}
+            <li>
+              <p class="property">{{name}}</p>
+              <p class="value">{{price value}}</p>
+            </li>
+            {{/each}}
+          </ul>
+        </figcaption>
+      </figure>
+    </li>
+    {{/each}}
+  </script>
+</body>
+
+</html>

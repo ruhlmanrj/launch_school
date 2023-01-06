@@ -27,22 +27,28 @@ h1 {
   margin: 20px auto 10px;
 }
 
-li {
+.todos {
+  padding: 0 15px;
+}
+
+.todos li {
   align-items: center;
   display: flex;
   font-size: 20px;
   justify-content: space-between;
-  padding: 18px;
+  padding: 18px 0;
 }
 
-li p {
+.todos li p {
   display: inline-block;
 }
 
 .separator {
   border-bottom: 1px solid #ccc;
-  width: 95%;
-  margin: auto;
+}
+
+.separator:last-child {
+  display: none;
 }
 
 button {
@@ -62,8 +68,30 @@ button {
   color: lightcoral;
 }
 
-.separator:last-child {
+.context-menu {
+  background-color: rgba(28, 46, 74, 0.9);
+  border-radius: 5px;
+  color: #fff;
   display: none;
+  font-size: 14px;
+  padding: 5px;
+  position: absolute;
+  transform: translate(0, -5px);
+}
+
+.context-menu li {
+  padding: 4px 8px;
+}
+
+.context-menu li:hover {
+  background-color: #5e9ceb;
+  border-radius: 3px;
+  cursor: default;
+}
+
+.context-menu .separator {
+  margin: 5px 8px;
+  width: auto;
 }
 
 .overlay {

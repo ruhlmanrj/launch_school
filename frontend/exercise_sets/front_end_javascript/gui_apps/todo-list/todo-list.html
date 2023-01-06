@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <title>App</title>
@@ -21,16 +21,20 @@
       <button class="delete" type="button">Delete todo</button>
       <button type="button">Cancel</button>
     </div>
-    <ul>
+    <ul class="context-menu">
+      <li>Show Details</li>
+      <div class="separator"></div>
+      <li>Edit Todo</li>
+      <div class="separator"></div>
+      <li>Delete Todo</li>
+    </ul>
+    <ul class="todos">
     </ul>
   </main>
 
   <script id="todos-template" type="template/x-handlebars">
     {{#each this}}
-    <li>
-      <p>{{title}}</p>
-      <button class="delete" data-id="{{id}}">Delete</button>
-    </li>
+    <li data-id="{{id}}"><p>{{title}}</p></li>
     <div class="separator"></div>
     {{/each}}
   </script>

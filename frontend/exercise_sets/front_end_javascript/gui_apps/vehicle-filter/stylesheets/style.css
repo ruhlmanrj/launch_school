@@ -1,0 +1,119 @@
+@import url('reset.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+html {
+  color: #333;
+  font: 16px Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: aliceblue;
+}
+
+header {
+  color: #020333;
+  margin: 20px auto;
+  min-width: 326px;
+  width: 90%;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.filters li,
+.filters {
+  display: inline-block;
+  text-align: center;
+}
+
+.filters .label-text {
+  text-transform: capitalize;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+.filters li {
+  margin-right: 8px;
+}
+
+button,
+select {
+  border: 1px solid #020333;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+select {
+  background-color: #fcfcfc;
+  color: #020333;
+  padding: 3px 6px 3px 0;
+}
+
+button {
+  background-color: #ccd4ff;
+  color: #205896;
+  cursor: pointer;
+  height: 27px;
+  line-height: 19px;
+  padding-left: 3px 6px;
+}
+
+main {
+  width: 90%;
+  margin: auto;
+}
+
+.vehicles {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  column-gap: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100px;
+  padding: 15px;
+  position: relative;
+  row-gap: 20px;
+}
+
+.status-msg {
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.vehicles > li {
+  border: 1px solid #020333;
+  border-radius: 5px;
+}
+
+.properties {
+  padding: 5px;
+}
+
+.vehicles p {
+  display: inline-block;
+}
+
+img {
+  height: 130px;
+}
+
+.property {
+  font-weight: bold;
+  margin-right: 5px;
+  text-align: right;
+  text-transform: capitalize;
+  width: 25%;
+}
+
