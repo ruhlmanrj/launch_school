@@ -1,23 +1,39 @@
-// An app for filtering a collection of cars based on 4 properties
+// An app for filtering a collection of cars based on 4 criteria
 
 const Utils = {
-  numberify(value) {
+  pricify(value) {
     const reversed = [...String(value)].reverse().join('');
     const commasAdded = reversed.replace(/\d{3}/g, match => `${match},`);
-    return [...commasAdded].reverse().join('');
+    return '$' + [...commasAdded].reverse().join('');
+  },
+  unique(array) {
+    return [...new Set(array)];
   },
 };
 
 class Vehicles {
   constructor(list) {
     this.list = list;
-    const properties = Object.keys(list[0]);
-    this.properties = properties.filter(prop => prop !== 'image');
+    const criteria = Object.keys(list[0]);
+    this.criteria = criteria.filter(name => name !== 'image');
   }
 
-  propertyValues(property) {
-    const values = this.list.map(vehicle => vehicle[property]);
-    return [...new Set(values)];
+  criterionValues(name) {
+    const values = this.list.map(vehicle => vehicle[name]);
+    return Utils.unique(values);
+  }
+
+  assocCriterionVals(refCriterion, assocCriterionName) {
+    const vals = [];
+
+    this.list.forEach(vehicle => {
+      const vehicleValue = String(vehicle[refCriterion.name]);
+      if (vehicleValue === refCriterion.value) {
+        vals.push(vehicle[assocCriterionName]);
+      }
+    });
+
+    return Utils.unique(vals);
   }
 
   listBy(criteria) {
@@ -39,6 +55,7 @@ class FilterView {
     this.elms = {
       filters: document.querySelector('.filters'),
       form: document.querySelector('form'),
+      reset: document.querySelector('.reset'),
       status: document.querySelector('.status-msg'),
       vehicles: document.querySelector('.vehicles'),
     };
@@ -48,41 +65,40 @@ class FilterView {
   }
 
   setUpTemplates() {
-    const filtersText = document.querySelector('#filters-template').text;
-    const vehiclesText = document.querySelector('#vehicles-template').text;
-    this.temps.filters = Handlebars.compile(filtersText);
-    this.temps.vehicles = Handlebars.compile(vehiclesText);
+    const templates = document.querySelectorAll('[type^="template"]');
+    templates.forEach(({ dataset, text }) => {
+      this.temps[dataset.name] = Handlebars.compile(text);
+      if (dataset.isPartial) Handlebars.registerPartial(dataset.name, text);
+    });
 
-    Handlebars.registerHelper('price', function (value) {
-      if (this.name === 'price') value = Utils.numberify(value);
+    Handlebars.registerHelper('price', function (value, name) {
+      if (name === 'price') value = Utils.pricify(value);
       return value;
     });
   }
-  
+
   renderFilters(filters) {
     this.elms.filters.innerHTML = this.temps.filters(filters);
   }
 
-  renderVehicles(vehicles, properties) {
-    if (vehicles.length === 0) {
-      this.setStatusMessage('There are no vehicles matching that criteria');
-      return;
-    }
+  renderFilterOptions(filters, criteria) {
+    filters.forEach(filter => {
+      const options = criteria[filter.name];
+      filter.innerHTML = this.temps.options({ name: filter.name, options });
+    });
+  }
 
-    vehicles.forEach(vehicle => this.addProperties(vehicle, properties));
+  renderVehicles(vehicles, criteria) {
+    vehicles.forEach(vehicle => this.addCriteria(vehicle, criteria));
     this.elms.vehicles.innerHTML = this.temps.vehicles(vehicles);
   }
 
-  addProperties(vehicle, properties) {
-    const vehicleProperties = properties.map(property => {
-      return { name: property, value: vehicle[property] };
+  addCriteria(vehicle, criteria) {
+    const vehicleCriteria = criteria.map(criteria => {
+      return { name: criteria, value: vehicle[criteria] };
     });
 
-    vehicle.properties = vehicleProperties;
-  }
-
-  setStatusMessage(message) {
-    this.elms.vehicles.innerHTML = `<p class="status-msg">${message}</p>`;
+    vehicle.criteria = vehicleCriteria;
   }
 }
 
@@ -93,11 +109,34 @@ class FilterApp {
 
     this.bindHandlers();
     this.view.renderFilters(this.getFilters());
+    this.view.renderVehicles(this.vehicles.list, this.vehicles.criteria);
   }
 
   bindHandlers() {
     const form = this.view.elms.form;
     form.addEventListener('submit', e => this.handleSubmitFilters(e));
+
+    const filters = this.view.elms.filters;
+    filters.addEventListener('change', e => this.handleFilterChange(e));
+
+    const reset = this.view.elms.reset;
+    reset.addEventListener('click', () => this.handleResetFilters());
+  }
+
+  handleFilterChange(e) {
+    const filter = e.target;
+    this.clearUndesiredOptions(filter);
+
+    const referenceCriterion = { name: filter.name, value: filter.value };
+    const filtersToUpdate = this.getUnchangedFilters();
+    const criteria = filtersToUpdate.map(({ name }) => name);
+
+    const associatedCriteria = this.getAssociatedCriteria(
+      referenceCriterion,
+      criteria
+    );
+
+    this.view.renderFilterOptions(filtersToUpdate, associatedCriteria);
   }
 
   handleSubmitFilters(e) {
@@ -106,7 +145,35 @@ class FilterApp {
     const criteria = this.extractFilterParams(e.target);
 
     const vehicles = this.vehicles.listBy(criteria);
-    this.view.renderVehicles(vehicles, this.vehicles.properties);
+    this.view.renderVehicles(vehicles, this.vehicles.criteria);
+  }
+
+  handleResetFilters() {
+    this.view.renderFilters(this.getFilters());
+    this.view.renderVehicles(this.vehicles.list, this.vehicles.criteria);
+  }
+
+  clearUndesiredOptions(select) {
+    const options = [...select.options];
+    const keep = options.find(({ value }) => value === select.value);
+
+    select.innerHTML = '';
+    select.appendChild(keep);
+  }
+
+  getUnchangedFilters() {
+    const filters = [...this.view.elms.filters.querySelectorAll('select')];
+    return filters.filter(({ value }) => value === 'Any');
+  }
+
+  getAssociatedCriteria(refCriterion, assocCriteriaNames) {
+    const criteria = {};
+
+    assocCriteriaNames.forEach(name => {
+      criteria[name] = this.vehicles.assocCriterionVals(refCriterion, name);
+    });
+
+    return criteria;
   }
 
   extractFilterParams(form) {
@@ -120,10 +187,10 @@ class FilterApp {
   }
 
   getFilters() {
-    return this.vehicles.properties.map(property => {
+    return this.vehicles.criteria.map(name => {
       return {
-        property,
-        options: this.vehicles.propertyValues(property),
+        name,
+        options: this.vehicles.criterionValues(name),
       };
     });
   }

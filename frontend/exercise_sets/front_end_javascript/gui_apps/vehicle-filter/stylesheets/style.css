@@ -44,6 +44,10 @@ p {
   margin-right: 8px;
 }
 
+.filters li:last-child {
+  margin-right: 2px;
+}
+
 button,
 select {
   border: 1px solid #020333;
@@ -51,10 +55,17 @@ select {
   font-size: 16px;
 }
 
+.reset {
+  background-color: #205896;
+  border: 1px solid #555;
+  color: #ccd4ff;
+}
+
 select {
   background-color: #fcfcfc;
   color: #020333;
   padding: 3px 6px 3px 0;
+  width: 80px;
 }
 
 button {
@@ -97,7 +108,7 @@ main {
   border-radius: 5px;
 }
 
-.properties {
+.criteria {
   padding: 5px;
 }
 
@@ -109,7 +120,7 @@ img {
   height: 130px;
 }
 
-.property {
+.criterion {
   font-weight: bold;
   margin-right: 5px;
   text-align: right;

@@ -18,67 +18,44 @@
     <form action="#" method="GET">
       <ul class="filters"></ul>
       <button type="submit">Filter</button>
+      <button class="reset" type="button">Reset</button>
     </form>
   </header>
   <main>
-    <ul class="vehicles">
-      <p class="status-msg">Awaiting selections...</p>
-      <!-- <li>
-        <figure><img
-            src="https://hips.hearstapps.com/hmg-prod/images/2022-honda-civic-hatchback-sport-touring-309-1634066512.jpg?crop=0.554xw:0.415xh;0.327xw,0.525xh&resize=1200:*"
-            alt="Honda Civic">
-          <figcaption>
-            <ul class="properties">
-              <li>
-                <p class="property">Make:</p>
-                <p class="value">Honda</p>
-              </li>
-              <li>
-                <p class="property">Model:</p>
-                <p class="value">Civic</p>
-              </li>
-              <li>
-                <p class="property">Price:</p>
-                <p class="value">$20,000</p>
-              </li>
-              <li>
-                <p class="property">Year:</p>
-                <p class="value">2022</p>
-              </li>
-            </ul>
-          </figcaption>
-        </figure>
-      </li> -->
-    </ul>
+    <ul class="vehicles"></ul>
   </main>
 
-  <script id="filters-template" type="template/x-handlebars">
+  <script id="filters-template" data-name="filters" type="template/x-handlebars">
     {{#each this}}
     <li>
       <label>
-        <p class="label-text">{{property}}</p>
-        <select name="{{property}}">
-          <option>Any</option>
-          {{#each options}}
-          <option>{{this}}</option>
-          {{/each}}
+        <p class="label-text">{{name}}</p>
+        <select name="{{name}}">
+          {{>options filter=this}}
         </select>
       </label>
     </li>
     {{/each}}
   </script>
 
-  <script id="vehicles-template" type="text/x-handlebars">
+  <script data-name="options" data-is-partial="true" type="template/x-handlebars">
+    <option>Any</option>
+    {{#each options}}
+    <option value={{this}}>{{price this ../name}}</option>
+    {{/each}}
+  </script>  
+
+  <script data-name="vehicles" type="template/x-handlebars">
     {{#each this}}
     <li>
       <figure>
         <img src="{{image}}" alt="{{make}} {{model}}">
         <figcaption>
-          <ul class="properties">
-            {{#each properties}}
+          <ul class="criteria">
+            {{#each criteria}}
             <li>
-              <p class="property">{{name}}</p>
-              <p class="value">{{price value}}</p>
+              <p class="criterion">{{name}}</p>
+              <p class="value">{{price value name}}</p>
             </li>
             {{/each}}
           </ul>
