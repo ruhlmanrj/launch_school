@@ -1,0 +1,41 @@
+@import url('reset.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+html {
+  color: #333;
+  font: 16px Roboto, Helvetica, Arial, sans-serif;
+}
+
+main {
+  left: 50%;
+  position: absolute;
+  top: 35%;
+  transform: translate(-50%);
+}
+
+.timer {
+  display: flex;
+  font-size: 20px;
+  width: 200px;
+}
+
+.timer li {
+  flex: 1;
+  font-size: 20px;
+  text-align: center;
+}
+
+.controls {
+  display: flex;
+  margin: 15px auto;
+  width: 180px;
+}
+
+.controls li:first-child {
+  margin-right: 5px;
+}
+
+.controls li:nth-child(2) {
+  margin-right: auto;
+}

@@ -1,20 +1,42 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>stopwatch</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="stopwatch.css" />
-    <script src="stopwatch.js" defer></script>
-  </head>
-  <body>
-    <div id="timer-wrapper">
-      <p id="timer">00 : 00 : 00 : 00</p>
-      <div id="buttons">
-        <button id="start-btn" type="button">Start</button>
-        <button id="stop-btn" type="button" hidden>Stop</button>
-        <button id="reset-btn" type="button">Reset</button>
-      </div>
-    </div>
-  </body>
-</html>
 
+<head>
+  <title>App</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
+    integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://code.jquery.com/jquery-3.6.2.min.js"
+    integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <script src="javascripts/app.js" defer></script>
+</head>
+
+<body>
+  <main>
+    <ul class="timer">
+      <li>
+        <p class="hours">00</p>
+      </li>
+      :
+      <li>
+        <p class="minutes">00</p>
+      </li>
+      :
+      <li>
+        <p class="seconds">00</p>
+      </li>
+      :
+      <li>
+        <p class="centiseconds">00</p>
+      </li>
+    </ul>
+    <ul class="controls">
+      <li><button class="start" type="button">Start</button></li>
+      <li><button class="stop" type="button">Stop</button></li>
+      <li><button class="reset" type="button">Reset</button></li>
+    </ul>
+  </main>
+</body>
+
+</html>
