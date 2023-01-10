@@ -1,27 +1,47 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>calculator</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="calculator.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="calculator.js" defer></script>
-  </head>
-  <body>
-    <div id="calculator">
-      <div id="windows">
-        <p id="op-window"></p>
-        <p id="entry-window">0</p>
-      </div>
-      <div id="buttons">
-      </div>
+
+<head>
+  <title>App</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
+    integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://code.jquery.com/jquery-3.6.2.min.js"
+    integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <script src="javascripts/app.js" defer></script>
+</head>
+
+<body>
+  <main class="calculator">
+    <div class="window">
+      <p class="operations"></p>
+      <p class="entry">0</p>
     </div>
 
-    <script data-name="buttons" type="text/x-handlebars-template">
-      {{#each buttons}}
-        <button type="button">{{this}}</button>
-      {{/each}}
-    </script>
-  </body>
-</html>
+    <ul class="buttons">
+      <li id="clear-all">C</li>
+      <li id="clear-entry">CE</li>
+      <li id="negate">NEG</li>
+      <li id="divide" class="operation">&#247;</li>
+      <li class="number">7</li>
+      <li class="number">8</li>
+      <li class="number">9</li>
+      <li id="multiply" class="operation">x</li>
+      <li class="number">4</li>
+      <li class="number">5</li>
+      <li class="number">6</li>
+      <li id="subtract" class="operation">&#8211;</li>
+      <li class="number">1</li>
+      <li class="number">2</li>
+      <li class="number">3</li>
+      <li id="add" class="operation">+</li>
+      <li class="number">0</li>
+      <li class="point">.</li>
+      <li id="modulo" class="operation">%</li>
+      <li id="equals">=</li>
+    </ul>
+  </main>
+</body>
 
+</html>

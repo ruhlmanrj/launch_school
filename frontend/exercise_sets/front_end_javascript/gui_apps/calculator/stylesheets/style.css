@@ -1,0 +1,74 @@
+@import url('reset.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+html {
+  color: #333;
+  font: 16px Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.calculator {
+  background-color: #b0b0b0;
+  border: 1px solid #888;
+  border-radius: 5px;
+  margin: 100px auto;
+  padding: 15px;
+  width: 300px;
+}
+
+.window {
+  background-color: #fefefe;
+  border-radius: 5px 5px 0 0;
+  box-shadow: inset 1px 1px 2px #888;
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  margin-bottom: 1px;
+  padding: 10px;
+  text-align: right;
+  width: 100%;
+}
+
+.operations {
+  font-size: 14px;
+  height: 14px;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+.entry {
+  color: #4a4a4a;
+  font-size: 2rem;
+  margin-top: auto;
+}
+
+.buttons {
+  background-color: #b8b8b8;
+  /* border: 1px solid #999;
+  border: 1px solid #b8b8b8; */
+  border-radius: 0 0 5px 5px;
+  color: #dfdfdf;
+  display: grid;
+  grid-auto-rows: 50px;
+  gap: 1px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.buttons * {
+  align-items: center;
+  background-color: #999;
+  cursor: default;
+  display: flex;
+  justify-content: center;
+}
+
+.dot {
+  font-size: 20px;
+}
