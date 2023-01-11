@@ -51,8 +51,6 @@ body {
 
 .buttons {
   background-color: #b8b8b8;
-  /* border: 1px solid #999;
-  border: 1px solid #b8b8b8; */
   border-radius: 0 0 5px 5px;
   color: #dfdfdf;
   display: grid;
@@ -71,4 +69,10 @@ body {
 
 .dot {
   font-size: 20px;
+}
+
+.width-test {
+  position: absolute;
+  left: -1000px;
+  white-space: nowrap;
 }

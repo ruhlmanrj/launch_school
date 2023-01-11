@@ -1,4 +1,4 @@
-/* A calculator app
+/* A calculator app using JQuery
 
 ===== Features
 - Standard operations
@@ -15,6 +15,7 @@
 
 - Supports fractional numbers
 - Shows operation history
+- Result size is dynamically adjusted to fit to calculator window
 - Repeated clicks on equals repeats previous operation
 - Clicking a new operation will automatically execute a queued operation
 - Will display error message if a divide by zero is attempted and subsequent
@@ -126,9 +127,46 @@ class CalculatorView {
   }
 
   set entryText(newText) {
-    this.elms.$entry.text(newText);
+    this.adjustEntryFontSize(String(newText));
+    this.elms.$entry.text(String(newText));
+  }
+
+  adjustEntryFontSize(stringNum) {
+    const entry = this.elms.$entry[0];
+    entry.style.fontSize = '';
+
+    const width = entry.clientWidth;
+    const fontSize = window.getComputedStyle(entry).fontSize;
+
+    const newSize = Adjust.fontSizeFor(stringNum, width, parseInt(fontSize));
+    entry.style.fontSize = newSize + 'px';
   }
 }
+
+const Adjust = {
+  fontSizeFor(text, availableWidth, maxFontSize) {
+    let testFontSize = maxFontSize;
+    let consumedWidth = this.widthAtSize(text, testFontSize);
+
+    while (consumedWidth > availableWidth) {
+      testFontSize -= 1;
+      consumedWidth = this.widthAtSize(text, testFontSize);
+    }
+
+    return testFontSize;
+  },
+
+  widthAtSize(text, fontSize) {
+    const $box = $(document.createElement('div'));
+    $box.addClass('width-test').css('font-size', fontSize).text(text);
+
+    $(document.body).append($box);
+    const width = $box.innerWidth();
+    $box.remove();
+
+    return width;
+  },
+};
 
 class CalculatorApp {
   constructor(calculator, view) {
@@ -263,7 +301,7 @@ class CalculatorApp {
   }
 
   performPendingOperation() {
-    const entryNumber = Number(this.view.entryText);
+    const entryNumber = this.view.entryText;
     return this.calculator[this.pendingOperation](entryNumber);
   }
 
@@ -296,4 +334,4 @@ class CalculatorApp {
   }
 }
 
-const app = new CalculatorApp(new Calculator(), new CalculatorView());
+new CalculatorApp(new Calculator(), new CalculatorView());
