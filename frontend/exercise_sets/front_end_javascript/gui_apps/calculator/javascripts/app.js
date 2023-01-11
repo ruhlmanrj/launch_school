@@ -37,25 +37,32 @@ class Calculator {
   }
 
   add(number) {
-    this.value += number;
+    number = Number(number);
 
+    this.value += number;
     this.updateHistory('add', number);
     return this.value;
   }
 
   subtract(number) {
+    number = Number(number);
+
     this.value -= number;
     this.updateHistory('subtract', number);
     return this.value;
   }
 
   multiply(number) {
+    number = Number(number);
+
     this.value *= number;
     this.updateHistory('multiply', number);
     return this.value;
   }
 
   divide(number) {
+    number = Number(number);
+
     const result = this.value / number;
     const divideByZero = Math.abs(result) === Infinity;
     this.value = divideByZero ? NaN : result;
@@ -65,8 +72,9 @@ class Calculator {
   }
 
   modulo(number) {
-    this.value %= number;
+    number = Number(number);
 
+    this.value %= number;
     this.updateHistory('modulo', number);
     return this.value;
   }
