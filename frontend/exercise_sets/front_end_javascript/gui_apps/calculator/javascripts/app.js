@@ -25,6 +25,31 @@
 
 */
 
+const Adjust = {
+  fontSizeFor(text, availableWidth, maxFontSize) {
+    let testFontSize = maxFontSize;
+    let consumedWidth = this.widthAtSize(text, testFontSize);
+
+    while (consumedWidth > availableWidth) {
+      testFontSize -= 1;
+      consumedWidth = this.widthAtSize(text, testFontSize);
+    }
+
+    return testFontSize;
+  },
+
+  widthAtSize(text, fontSize) {
+    const $box = $(document.createElement('div'));
+    $box.addClass('width-test').css('font-size', fontSize).text(text);
+
+    $(document.body).append($box);
+    const width = $box.innerWidth();
+    $box.remove();
+
+    return width;
+  },
+};
+
 class Calculator {
   constructor() {
     this.value = 0;
@@ -80,7 +105,7 @@ class Calculator {
   }
 
   repeatLast() {
-    if (this.history.length === 0) return;
+    if (this.history.length === 0) return undefined;
 
     const { operation, number } = this.history.at(-1);
     return this[operation](number);
@@ -144,37 +169,13 @@ class CalculatorView {
     entry.style.fontSize = '';
 
     const width = entry.clientWidth;
-    const fontSize = window.getComputedStyle(entry).fontSize;
+    const fontSizeStr = window.getComputedStyle(entry).fontSize;
+    const fontSize = parseInt(fontSizeStr, 10);
 
-    const newSize = Adjust.fontSizeFor(stringNum, width, parseInt(fontSize));
+    const newSize = Adjust.fontSizeFor(stringNum, width, fontSize);
     entry.style.fontSize = newSize + 'px';
   }
 }
-
-const Adjust = {
-  fontSizeFor(text, availableWidth, maxFontSize) {
-    let testFontSize = maxFontSize;
-    let consumedWidth = this.widthAtSize(text, testFontSize);
-
-    while (consumedWidth > availableWidth) {
-      testFontSize -= 1;
-      consumedWidth = this.widthAtSize(text, testFontSize);
-    }
-
-    return testFontSize;
-  },
-
-  widthAtSize(text, fontSize) {
-    const $box = $(document.createElement('div'));
-    $box.addClass('width-test').css('font-size', fontSize).text(text);
-
-    $(document.body).append($box);
-    const width = $box.innerWidth();
-    $box.remove();
-
-    return width;
-  },
-};
 
 class CalculatorApp {
   constructor(calculator, view) {
