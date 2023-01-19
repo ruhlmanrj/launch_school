@@ -288,6 +288,9 @@ class CalculatorApp {
     if (this.view.entryText === '0') return;
 
     const negated = Number(this.view.entryText) * -1;
+    if (this.pendingOperation === 'equals') this.reset();
+    this.overwriteEntry = false;
+
     this.view.entryText = String(negated);
   }
 

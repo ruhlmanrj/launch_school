@@ -12,11 +12,16 @@ body {
 }
 
 .calculator {
+  animation: slide-in 2.4s forwards;
   background-color: #b0b0b0;
   border: 1px solid #888;
   border-radius: 5px;
-  margin: 100px auto;
+  left: 50%;
+  margin: auto;
   padding: 15px;
+  position: absolute;
+  top: -467px;
+  transform: translate(-50%);
   width: 300px;
 }
 
@@ -75,4 +80,34 @@ body {
   position: absolute;
   left: -1000px;
   white-space: nowrap;
+}
+
+@keyframes slide-in {
+  41.7% {
+    top: 100px;
+  }
+
+  58.3% {
+    top: -84px;
+  }
+
+  75% {
+    top: 100px;
+  }
+
+  83.3% {
+    top: 8px;
+  }
+
+  91.7% {
+    top: 100px;
+  }
+
+  95.8% {
+    top: 54px;
+  }
+
+  100% {
+    top: 100px;
+  }
 }

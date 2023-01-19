@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Contact Manager App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <script src="javascripts/jquery.js"></script>
+  <script src="javascripts/handlebars.js"></script>
+  <script src="javascripts/app.js" defer></script>
+</head>
+
+<body class="pre-load">
+  <div class="overlay"></div>
+  <header class="outer-header">
+    <h1>Contact Manager</h1>
+    <p>Using Backbone.js, Localstorage, RequireJS, and Handlebars</p>
+  </header>
+
+  <main>
+    <form class="contact-form" action="" method="POST">
+      <h2><span class="form-type"></span> Contact</h2>
+      <ul>
+        <li>
+          <div class="control">
+            <label for="name">Full name:</label>
+            <input type="text" id="name" name="name">
+          </div>
+          <p class="hidden">Please enter the name field.</p>
+        </li>
+        <li>
+          <div class="control">
+            <label for="email">Email address:</label>
+            <input type="text" id="email" name="email">
+          </div>
+          <p class="hidden"></p>
+        </li>
+        <li>
+          <div class="control">
+            <label for="phone">Telephone number:</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+          <p class="hidden"></p>
+        </li>
+        <li>
+          <div class="control">
+            <label for="create-tag">Create a new tag:</label>
+            <input type="text" id="create-tag" name="create-tag">
+          </div>
+          <button class="create-tag-btn" type="button">Create</button>
+        </li>
+        <li>
+          <div class="control select-tags-wrapper">
+            <label for="tags">Attach tags:</label>
+            <select class="select-tags" name="tags" id="tags" multiple size="4">
+              <option>Engineering</option>
+              <option>Marketing</option>
+              <option>Healthcare</option>
+            </select>
+          </div>
+        </li>
+      </ul>
+      <button type="submit">Submit</button>
+      <button class="cancel-btn" type="button">Cancel</button>
+    </form>
+
+    <section class="search">
+      <button class="add-btn">Add Contact</button>
+      <input type="text" placeholder="Search">
+    </section>
+
+    <ul class="contacts">
+      <li data-id="1">
+        <p class="name">Robert</p>
+        <dl>
+          <dt>Phone Number:</dt>
+          <dd>810-278-4569</dd>
+          <dt>Email:</dt>
+          <dd>ruhlmanrj@gmail.com</dd>
+        </dl>
+        <button class="list-btn"><i class="fa-solid fa-pen"></i>Edit</button>
+        <button class="list-btn"><i class="fa-regular fa-trash-can"></i>Delete</button>
+        <dl class="tags">
+          <dt>Tags:</dt>
+          <dd>
+            <a href="#">Engineering</a>,
+            <a href="#">Healthcare</a>,
+            <a href="#">Marketing</a>,
+            <a href="#">Education</a>
+          </dd>
+        </dl>
+      </li>
+      <li data-id="1">
+        <p class="name">Robert</p>
+        <dl>
+          <dt>Phone Number:</dt>
+          <dd>810-278-4569</dd>
+          <dt>Email:</dt>
+          <dd>ruhlmanrj@gmail.com</dd>
+        </dl>
+        <button class="list-btn"><i class="fa-solid fa-pen"></i>Edit</button>
+        <button class="list-btn"><i class="fa-regular fa-trash-can"></i>Delete</button>
+      </li>
+      <li data-id="1">
+        <p class="name">Robert</p>
+        <dl>
+          <dt>Phone Number:</dt>
+          <dd>810-278-4569</dd>
+          <dt>Email:</dt>
+          <dd>ruhlmanrj@gmail.com</dd>
+        </dl>
+        <button class="list-btn"><i class="fa-solid fa-pen"></i>Edit</button>
+        <button class="list-btn"><i class="fa-regular fa-trash-can"></i>Delete</button>
+      </li>
+      <li data-id="1">
+        <p class="name">Robert</p>
+        <dl>
+          <dt>Phone Number:</dt>
+          <dd>810-278-4569</dd>
+          <dt>Email:</dt>
+          <dd>ruhlmanrj@gmail.com</dd>
+        </dl>
+        <button class="list-btn"><i class="fa-solid fa-pen"></i>Edit</button>
+        <button class="list-btn"><i class="fa-regular fa-trash-can"></i>Delete</button>
+      </li>
+      <li data-id="1">
+        <p class="name">Robert</p>
+        <dl>
+          <dt>Phone Number:</dt>
+          <dd>810-278-4569</dd>
+          <dt>Email:</dt>
+          <dd>ruhlmanrj@gmail.com</dd>
+        </dl>
+        <button class="list-btn"><i class="fa-solid fa-pen"></i>Edit</button>
+        <button class="list-btn"><i class="fa-regular fa-trash-can"></i>Delete</button>
+      </li>
+    </ul>
+
+    <!-- <section class="status-msg">
+      <p>There are no contacts.</p>
+      <button class="add-btn">Add Contact</button>
+    </section> -->
+
+    <!-- <section class="status-msg">
+          <p>There are no contacts starting with <span class="search-terms">abc</span>.</p>
+        </section> -->
+  </main>
+
+  <footer>
+    <p>Developed by <a href="http://www.devsaran.com/" target="_blank">Devsaran.com</a> and Robert Ruhlman</p>
+  </footer>
+
+  <script id="contacts-template" data-name="contacts" type="template/x-handlebars">
+    {{#each contacts}}
+    <li data-id="{{id}}">
+      <p class="name">{{full_name}}</p>
+      <dl>
+        <dt>Phone Number:</dt>
+        <dd>{{phone_number}}</dd>
+        <dt>Email:</dt>
+        <dd>{{email}}</dd>
+      </dl>
+      <button class="list-btn"><i class="fa-solid fa-pen"></i>Edit</button>
+      <button class="list-btn"><i class="fa-regular fa-trash-can"></i>
+        Delete</button>
+      <dl class="tags">
+        <dt>Tags:</dt>
+        <dd>
+          {{>tags tags=tags}}
+        </dd>
+      </dl>
+    </li>
+    {{/each}}
+  </script>
+
+  <script id="tags-template" data-name="tags" data-type="partial" type="template/x-handlebars">
+    {{#each tags}}
+    {{#if (isLastTag ../tags)}}
+    {{>tag tag=this}}
+    {{else}}
+    {{>tag tag=this}}, 
+    {{/if}}
+    {{/each}}
+  </script>
+
+  <script id="tag-template" data-name="tag" data-type="partial" type="template/x-handlebars">
+    <a href="#">{{tag}}</a>{{" "~}}
+  </script>
+</body>
+
+</html>
