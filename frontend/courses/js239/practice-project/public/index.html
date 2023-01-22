@@ -17,7 +17,7 @@
   <script src="javascripts/app.js" defer></script>
 </head>
 
-<body class="pre-load">
+<body>
   <div class="overlay"></div>
   <header class="outer-header">
     <h1>Contact Manager</h1>
@@ -25,44 +25,44 @@
   </header>
 
   <main>
-    <form class="contact-form" action="" method="POST">
+    <form class="contact-form" action="#" method="POST" novalidate>
+      <input type="hidden" id="id" name="id">
       <h2><span class="form-type"></span> Contact</h2>
       <ul>
         <li>
           <div class="control">
             <label for="name">Full name:</label>
-            <input type="text" id="name" name="name">
+            <input type="text" id="full_name" name="full_name" required>
           </div>
-          <p class="hidden">Please enter the name field.</p>
+          <p></p>
         </li>
         <li>
           <div class="control">
             <label for="email">Email address:</label>
-            <input type="text" id="email" name="email">
+            <input type="text" id="email" name="email" required pattern="[^@]+@[^@]+">
           </div>
-          <p class="hidden"></p>
+          <p></p>
         </li>
         <li>
           <div class="control">
             <label for="phone">Telephone number:</label>
-            <input type="tel" id="phone" name="phone">
+            <input type="tel" id="phone_number" name="phone_number" required>
           </div>
-          <p class="hidden"></p>
+          <p></p>
         </li>
         <li>
           <div class="control">
             <label for="create-tag">Create a new tag:</label>
             <input type="text" id="create-tag" name="create-tag">
           </div>
+          <p></p>
           <button class="create-tag-btn" type="button">Create</button>
         </li>
         <li>
-          <div class="control select-tags-wrapper">
+          <div class="control form-tags-wrapper">
             <label for="tags">Attach tags:</label>
-            <select class="select-tags" name="tags" id="tags" multiple size="4">
-              <option>Engineering</option>
-              <option>Marketing</option>
-              <option>Healthcare</option>
+            <select class="form-tags" name="tags" id="tags" multiple size="4">
+              <option disabled>Create a tag to attach.</option>
             </select>
           </div>
         </li>
@@ -76,81 +76,16 @@
       <input type="text" placeholder="Search">
     </section>
 
-    <ul class="contacts">
-      <li data-id="1">
-        <p class="name">Robert</p>
-        <dl>
-          <dt>Phone Number:</dt>
-          <dd>810-278-4569</dd>
-          <dt>Email:</dt>
-          <dd>ruhlmanrj@gmail.com</dd>
-        </dl>
-        <button class="list-btn"><i class="fa-solid fa-pen"></i>Edit</button>
-        <button class="list-btn"><i class="fa-regular fa-trash-can"></i>Delete</button>
-        <dl class="tags">
-          <dt>Tags:</dt>
-          <dd>
-            <a href="#">Engineering</a>,
-            <a href="#">Healthcare</a>,
-            <a href="#">Marketing</a>,
-            <a href="#">Education</a>
-          </dd>
-        </dl>
-      </li>
-      <li data-id="1">
-        <p class="name">Robert</p>
-        <dl>
-          <dt>Phone Number:</dt>
-          <dd>810-278-4569</dd>
-          <dt>Email:</dt>
-          <dd>ruhlmanrj@gmail.com</dd>
-        </dl>
-        <button class="list-btn"><i class="fa-solid fa-pen"></i>Edit</button>
-        <button class="list-btn"><i class="fa-regular fa-trash-can"></i>Delete</button>
-      </li>
-      <li data-id="1">
-        <p class="name">Robert</p>
-        <dl>
-          <dt>Phone Number:</dt>
-          <dd>810-278-4569</dd>
-          <dt>Email:</dt>
-          <dd>ruhlmanrj@gmail.com</dd>
-        </dl>
-        <button class="list-btn"><i class="fa-solid fa-pen"></i>Edit</button>
-        <button class="list-btn"><i class="fa-regular fa-trash-can"></i>Delete</button>
-      </li>
-      <li data-id="1">
-        <p class="name">Robert</p>
-        <dl>
-          <dt>Phone Number:</dt>
-          <dd>810-278-4569</dd>
-          <dt>Email:</dt>
-          <dd>ruhlmanrj@gmail.com</dd>
-        </dl>
-        <button class="list-btn"><i class="fa-solid fa-pen"></i>Edit</button>
-        <button class="list-btn"><i class="fa-regular fa-trash-can"></i>Delete</button>
-      </li>
-      <li data-id="1">
-        <p class="name">Robert</p>
-        <dl>
-          <dt>Phone Number:</dt>
-          <dd>810-278-4569</dd>
-          <dt>Email:</dt>
-          <dd>ruhlmanrj@gmail.com</dd>
-        </dl>
-        <button class="list-btn"><i class="fa-solid fa-pen"></i>Edit</button>
-        <button class="list-btn"><i class="fa-regular fa-trash-can"></i>Delete</button>
-      </li>
-    </ul>
+    <ul class="contacts"></ul>
 
-    <!-- <section class="status-msg">
+    <section class="no-contacts status-msg">
       <p>There are no contacts.</p>
       <button class="add-btn">Add Contact</button>
-    </section> -->
+    </section>
 
-    <!-- <section class="status-msg">
-          <p>There are no contacts starting with <span class="search-terms">abc</span>.</p>
-        </section> -->
+    <section class="no-matching-contacts status-msg">
+      <p>There are no contacts starting with <span class="term"></span>.</p>
+    </section>
   </main>
 
   <footer>
@@ -163,35 +98,48 @@
       <p class="name">{{full_name}}</p>
       <dl>
         <dt>Phone Number:</dt>
-        <dd>{{phone_number}}</dd>
+        <dd class="phone">{{phone_number}}</dd>
         <dt>Email:</dt>
-        <dd>{{email}}</dd>
+        <dd class="email">{{email}}</dd>
       </dl>
-      <button class="list-btn"><i class="fa-solid fa-pen"></i>Edit</button>
-      <button class="list-btn"><i class="fa-regular fa-trash-can"></i>
-        Delete</button>
+      <button class="list-btn edit-btn"><i class="fa-solid fa-pen"></i>
+        Edit
+      </button>
+      <button class="list-btn delete-btn"><i class="fa-regular fa-trash-can"></i>
+        Delete
+      </button>
       <dl class="tags">
         <dt>Tags:</dt>
         <dd>
-          {{>tags tags=tags}}
+          {{>contactTags tags=tags}}
         </dd>
       </dl>
     </li>
     {{/each}}
   </script>
 
-  <script id="tags-template" data-name="tags" data-type="partial" type="template/x-handlebars">
+  <script id="contact-tags-template" data-name="contactTags" data-type="partial" type="template/x-handlebars">
     {{#each tags}}
     {{#if (isLastTag ../tags)}}
-    {{>tag tag=this}}
+    {{>contactTag tag=this}}
     {{else}}
-    {{>tag tag=this}}, 
+    {{>contactTag tag=this}}, 
     {{/if}}
     {{/each}}
   </script>
 
-  <script id="tag-template" data-name="tag" data-type="partial" type="template/x-handlebars">
+  <script id="contact-tag-template" data-name="contactTag" data-type="partial" type="template/x-handlebars">
     <a href="#">{{tag}}</a>{{" "~}}
+  </script>
+
+  <script id="form-tags-template" data-name="formTags" data-type="partial" type="template/x-handlebars">
+    {{#each tags}}
+    {{>formTag tag=this}}
+    {{/each}}
+  </script>
+
+  <script id="form-tag-template" data-name="formTag" data-type="partial" type="template/x-handlebars">
+    <option>{{tag}}</option>
   </script>
 </body>
 

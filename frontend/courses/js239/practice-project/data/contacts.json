@@ -15,9 +15,16 @@
   },
   {
     "id": 3,
-    "full_name": "Pete Hanson",
-    "email": "ph@example.com",
-    "phone_number": "54321098761",
-    "tags": null
+    "full_name": "James Johnson",
+    "email": "nf@example.com",
+    "phone_number": "12345678901",
+    "tags": "family,friend"
+  },
+  {
+    "id": 4,
+    "full_name": "Natalie Jones",
+    "email": "vpr@example.com",
+    "phone_number": "09876543210",
+    "tags": "work,family"
   }
 ]
